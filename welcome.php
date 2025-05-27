@@ -36,7 +36,6 @@ if ($role === "admin") {
 <p class="alert alert-warning text-capitalize fs-4">User is not defined</p>
 <a href="./logout.php" class="btn btn-danger btn-sm">logout</a>
 
-
 <?php
 }
 include './footer.php';
