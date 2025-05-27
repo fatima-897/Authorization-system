@@ -1,5 +1,5 @@
 <?php 
-include './header.php';
+include ('./include/header.php');
 session_start();
 
 if(!isset($_SESSION['user']))
@@ -8,11 +8,6 @@ if(!isset($_SESSION['user']))
     exit();
     
 }
-?>
-<p class="alert alert-success text-capitalize fs-4">welcome <strong><?php echo $user ?></strong> You've successfully log in</p>
-<a href="./logout.php" class="btn btn-danger btn-sm">logout</a>
-
-<?php 
 $user = $_SESSION['user'];
 
 if(!isset($_SESSION['role']))
@@ -38,5 +33,5 @@ if ($role === "admin") {
 
 <?php
 }
-include './footer.php';
+include ('./include/footer.php')
 ?>
