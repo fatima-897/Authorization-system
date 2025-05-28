@@ -1,16 +1,12 @@
 <?php 
 include('./db.php'); 
-include ('./include/header.php');
+include('./include/header.php');
 session_start();
 
 if(!isset($_SESSION['role']) || $_SESSION['role'] !== "admin" ){
     header("Location: index.php");
     exit();
 }
-
-$username = $_SESSION['user'] ?? 'Guest';
-$id = $_SESSION['id'] ?? 'N/A';
-$role = $_SESSION['role'] ?? 'N/A';
 
 $sql = "SELECT role, COUNT(*) as count FROM users GROUP BY role";
 $result = $conn->query($sql);
@@ -22,12 +18,16 @@ $counts = [
 ];
 
 // Fetch counts into the array
-if ($result && $result->num_rows > 0) {
+if ($result) {
     while ($row = $result->fetch_assoc()) {
         $role = $row['role'];
         $counts[$role] = $row['count'];
     }
 }
+
+$username = $_SESSION['user'];
+$id = $_SESSION['id'];
+$role = $_SESSION['role'] ;
 
 ?>
 <h1>Admin Dashboard</h1>
