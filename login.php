@@ -19,6 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         if(password_verify($password ,$row['password'])){
         $_SESSION['user'] = $row['username'];
         $_SESSION['role'] = $row['role'];
+        $_SESSION['id'] = $row['id'];
 
        header("Location: welcome.php");
                 exit();
