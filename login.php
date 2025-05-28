@@ -1,13 +1,15 @@
 <?php
 
 include ('./db.php');
-include ('./header.php');
+include ('./include/header.php');
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $username = $_POST['username'];
     $password = $_POST['password'];
     $role  = $_POST['role'];
+
+    if (!empty($username) && !empty($password)) {
 
       $sql = "SELECT * from users where username = '$username'";
 
@@ -18,18 +20,19 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $_SESSION['user'] = $row['username'];
         $_SESSION['role'] = $row['role'];
 
-        header("Location: welcome.php");
-        exit();
-        }else {
-          echo "<div class='alert alert-danger>Error:incorrect password</div>";
-          }
-        
-      } else{
-        echo "<div class='alert alert-warning>Error: user not found</div>";
-      }
-      
+       header("Location: welcome.php");
+                exit();
+            } else {
+                echo "<div class='alert alert-danger'>Error: incorrect password</div>";
+            }
+        } else {
+            echo "<div class='alert alert-warning'>Error: user not found</div>";
+        }
+    } else {
+        echo "<div class='alert alert-warning'>Please enter username and password</div>";
+    }
 }
 
 
-include './footer.php';
+include ('./include/footer.php')
 ?>
